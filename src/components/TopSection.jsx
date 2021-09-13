@@ -2,8 +2,18 @@ import React from "react";
 import { useState } from "react";
 export default function TopSection() {
   const [grocery, setGrocery] = useState([]);
+  const [wistlist, setWishlist] = useState([]);
+  const [finallist, setFinallist] = useState([]);
   const changeHandler = (e) => {
     setGrocery(e.target.value);
+  };
+  const addToFinalList = (e) => {
+    setFinallist([...finallist, grocery]);
+    setGrocery("");
+  };
+  const addTowishList = (e) => {
+    setWishlist([...wistlist, grocery]);
+    setGrocery("");
   };
   return (
     <div>
@@ -20,8 +30,12 @@ export default function TopSection() {
             value={grocery}
             onChange={changeHandler}
           />
-          <button className="btn btn-primary">Add To FinalList</button>
-          <button className="btn btn-primary">Add To WishList</button>
+          <button className="btn btn-primary" onClick={addToFinalList}>
+            Add To FinalList
+          </button>
+          <button className="btn btn-primary" onClick={addTowishList}>
+            Add To WishList
+          </button>
         </div>
       </div>
     </div>
